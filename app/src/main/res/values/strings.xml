@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SinPlan Chat</string>
+    <string name="boas_vindas">Bem vindo ao chat da SinPlanControl-M</string>
+    <string name="nome">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="enviar">Enviar</string>
+    <string name="escreva_msg">Escreva sua mensagem</string>
+    <string name="enviar_cp">Enviar cópia por e-mail</string>
+    <string name="fechar">Fechar</string>
+    <string name="nome_editText">Digite seu nome</string>
+    <string name="email_editText">Digite seu e-mail</string>
+    <string name="entrar">Entrar</string>
+    <string name="bot01">Olá, qual a sua dúvida?</string>
+    <string name="pergunta01">Gostaria de saber sobre certidão de nascimento</string>
+    <string name="bot02">Desculpe, não entendi</string>
+    <string name="pergunta02">Quero saber sobre certidão de nascimento</string>
+    <string name="bot03">Desculpe, não entendi</string>
+    <string name="pergunta03">Certidão de nascimento</string>
+    <string name="bot04">Desculpe, não entendi, ligue para 5081-8800 para ser atendido por um atendente</string>
+    <string name="agradecimento">Obrigado por usar o chat da SinPlanControl-M</string>
+    <string name="telefone">Telefone</string>
+</resources>
