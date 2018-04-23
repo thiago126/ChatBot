@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by tnf98 on 18/04/2018.
  */
 
-public class Firebase {
+public class Database {
 
     public Usuario inserir(Usuario usuario){
         DatabaseReference raiz = FirebaseDatabase.getInstance().getReference();

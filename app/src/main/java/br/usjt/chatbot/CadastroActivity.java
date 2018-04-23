@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.Date;
+
 public class CadastroActivity extends AppCompatActivity {
 
     public EditText nome, email, telefone;
@@ -26,9 +28,10 @@ public class CadastroActivity extends AppCompatActivity {
         usuario.setNome(nome.getText().toString());
         usuario.setEmail(email.getText().toString());
         usuario.setTelefone(telefone.getText().toString());
+        usuario.setDate(new Date());
 
-        Firebase firebase = new Firebase();
-        firebase.inserir(usuario);
+        Database database = new Database();
+        database.inserir(usuario);
 
         Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);

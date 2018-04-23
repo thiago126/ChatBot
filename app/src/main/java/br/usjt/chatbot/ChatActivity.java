@@ -1,31 +1,23 @@
 package br.usjt.chatbot;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-
-import ai.api.http.HttpClient;
-import okhttp3.OkHttpClient;
-import okhttp3.Response;
 
 public class ChatActivity extends AppCompatActivity {
     private EditText txtMsg;
@@ -48,8 +40,7 @@ public class ChatActivity extends AppCompatActivity {
     // Create GetText Metod
     public void GetText() throws UnsupportedEncodingException {
 
-        String text = "";
-        BufferedReader reader = null;
+        String text;
 
         // Send data
         try {
@@ -78,30 +69,23 @@ public class ChatActivity extends AppCompatActivity {
 
             // Get the server response
 
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            // Recebe
+            InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
 
-            StringBuilder sb = new StringBuilder();
-            String line;
-
-
-            // Read Server Response
-            while ((line = reader.readLine()) != null) {
-                // Append server response in string
-                sb.append(line + "\n");
-            }
-            text = sb.toString();
+            JsonReader reader = new JsonReader(inputStreamReader);
+            reader.beginObject();
+            reader.hasNext();
+            reader.nextName();
+            reader.beginArray();
+            reader.beginObject();
+            reader.nextName();
+            text = reader.nextString();
 
             Log.d("karma ", "response is " + text);
             TextView txt = findViewById(R.id.msg1);
             txt.setText(text);
         } catch (Exception ex) {
             Log.d("karma", "exception at last " + ex);
-        } finally {
-            try {
-
-                reader.close();
-            } catch (Exception ex) {
-            }
         }
     }
 

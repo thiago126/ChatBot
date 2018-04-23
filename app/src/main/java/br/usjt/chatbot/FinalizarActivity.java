@@ -3,6 +3,8 @@ package br.usjt.chatbot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import br.usjt.chatbot.R;
+
 public class FinalizarActivity extends AppCompatActivity {
 
     @Override
