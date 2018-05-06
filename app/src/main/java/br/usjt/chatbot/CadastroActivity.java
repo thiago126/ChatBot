@@ -30,7 +30,7 @@ public class CadastroActivity extends AppCompatActivity {
         usuario.setTelefone(telefone.getText().toString());
         usuario.setDate(new Date());
 
-        Database database = new Database();
+        FirebaseDb database = new FirebaseDb();
         database.inserir(usuario);
 
         Intent intent = new Intent(this, ChatActivity.class);

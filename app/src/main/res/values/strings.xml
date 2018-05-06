@@ -12,13 +12,9 @@
     <string name="nome_editText">Digite seu nome</string>
     <string name="email_editText">Digite seu e-mail</string>
     <string name="entrar">Entrar</string>
-    <string name="bot01">Olá, qual a sua dúvida?</string>
-    <string name="pergunta01">Gostaria de saber sobre certidão de nascimento</string>
-    <string name="bot02">Desculpe, não entendi</string>
-    <string name="pergunta02">Quero saber sobre certidão de nascimento</string>
-    <string name="bot03">Desculpe, não entendi</string>
-    <string name="pergunta03">Certidão de nascimento</string>
-    <string name="bot04">Desculpe, não entendi, ligue para 5081-8800 para ser atendido por um atendente</string>
     <string name="agradecimento">Obrigado por usar o chat da SinPlanControl-M</string>
     <string name="telefone">Telefone</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
