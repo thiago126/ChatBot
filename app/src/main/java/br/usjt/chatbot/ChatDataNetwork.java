@@ -2,15 +2,17 @@ package br.usjt.chatbot;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,7 +38,10 @@ public class ChatDataNetwork {
         Request.Builder builder = new Request.Builder();
         builder.url(url);
 
-        RequestBody body = RequestBody.create(mediaType, jsonParam.toString());
+        Charset charset = Charset.forName(StandardCharsets.UTF_8.name());
+
+        //RequestBody body = RequestBody.create(mediaType, jsonParam.toString());
+        RequestBody body = new FormBody.Builder(charset).add("question",jsonParam.toString()).build();
 
         builder.post(body);
 

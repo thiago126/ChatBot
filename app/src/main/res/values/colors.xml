@@ -6,4 +6,5 @@
     <color name="colorBot">#d6d6d6</color>
     <color name="colorUser">#85e97575</color>
     <color name="colorFundo">#fff</color>
+    <color name="color_welcome">#780404</color>
 </resources>
