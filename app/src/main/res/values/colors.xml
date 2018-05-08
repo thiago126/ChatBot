@@ -3,8 +3,8 @@
     <color name="colorPrimary">#a31f23</color>
     <color name="colorPrimaryDark">#790a0c</color>
     <color name="colorAccent">#7c080f</color>
-    <color name="colorBot">#d6d6d6</color>
-    <color name="colorUser">#85e97575</color>
+    <color name="colorBot">#55f12222</color>
+    <color name="colorUser">#41362a2a</color>
     <color name="colorFundo">#fff</color>
     <color name="color_welcome">#780404</color>
 </resources>

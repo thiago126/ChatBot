@@ -26,9 +26,9 @@ public class ChatActivity extends AppCompatActivity {
     private Mensagem[] lista;
     public final static String URL = "https://westus.api.cognitive.microsoft.com/qnamaker/v2.0/knowledgebases/f1736255-e25a-43fc-9582-01163e2134ed/generateAnswer";
     private ListView listView;
-    private ArrayAdapter adapter;
-    private ArrayList<String> mensagens;
+    private ArrayList<Mensagem> mensagens;
     private Mensagem mensagem;
+    private ChatAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,11 @@ public class ChatActivity extends AppCompatActivity {
         txtMsg = findViewById(R.id.txtMsg);
         listView = findViewById(R.id.listMsg);
         mensagens = new ArrayList<>();
-        mensagens.add("Olá, no que posso te ajudar?");
-        adapter = new ArrayAdapter<>(ChatActivity.this,
-                R.layout.linha_mensagem,
-                R.id.texto_mensagem,
-                mensagens );
+        Mensagem mensagem = new Mensagem();
+        mensagem.setMensagem("Olá, como posso te ajudar?");
+        mensagem.setLado(true);
+        mensagens.add(mensagem);
+        adapter = new ChatAdapter(mensagens,this);
         listView.setAdapter(adapter);
     }
 
@@ -53,7 +53,10 @@ public class ChatActivity extends AppCompatActivity {
         } else {
 
             final String answer = msg;
-            mensagens.add(answer);
+            Mensagem message = new Mensagem();
+            message.setMensagem(answer);
+            message.setLado(false);
+            mensagens.add(message);
             adapter.notifyDataSetChanged();
             txtMsg.setText("");
             if (ChatDataNetwork.isConnected(this)) {
@@ -69,7 +72,8 @@ public class ChatActivity extends AppCompatActivity {
                                         public void run() {
                                             mensagem = lista[0];
                                             mensagem.setMensagem(lista[0].getMensagem());
-                                            mensagens.add(mensagem.getMensagem());
+                                            mensagem.setLado(true);
+                                            mensagens.add(mensagem);
                                             adapter.notifyDataSetChanged();
                                         }
                                     });

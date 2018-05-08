@@ -8,9 +8,14 @@ public class Mensagem {
 
     private String mensagem;
     private String nome;
+    private boolean lado;
 
     public Mensagem(){
 
+    }
+
+    private Mensagem(String mensagem){
+        this.mensagem = mensagem;
     }
 
     public String getMensagem() {
@@ -27,6 +32,14 @@ public class Mensagem {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setLado(boolean lado) {
+        this.lado = lado;
+    }
+
+    public boolean isLado() {
+        return lado;
     }
 }
 
