@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/layout_msg"
-    android:orientation="horizontal"
-    android:padding="8dp"
-    android:layout_gravity="end">
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/texto_mensagem"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:background="@drawable/msg_user"
         android:padding="5dp"
+        android:layout_alignParentRight="true"
         />
-</LinearLayout>
+</RelativeLayout>
