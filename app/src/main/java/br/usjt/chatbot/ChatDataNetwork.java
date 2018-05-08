@@ -26,9 +26,9 @@ import okhttp3.Response;
 public class ChatDataNetwork {
 
 
-    public static MensagemBot[] buscaMensagem(String url, String pergunta) throws IOException, JSONException {
+    public static Mensagem[] buscaMensagem(String url, String pergunta) throws IOException, JSONException {
         OkHttpClient client = new OkHttpClient();
-        ArrayList<MensagemBot> mensagemBots = new ArrayList<>();
+        ArrayList<Mensagem> mensagens = new ArrayList<>();
         MediaType mediaType = MediaType.parse("application/json; charset=UTF-8");
 
         JSONObject jsonParam = new JSONObject();
@@ -62,9 +62,9 @@ public class ChatDataNetwork {
             int i = 0;
             JSONObject answer = answers.getJSONObject(i);
 
-            MensagemBot mBot = new MensagemBot();
-            mBot.setAnswer(answer.getString("answer"));
-            mensagemBots.add(mBot);
+            Mensagem mensagem = new Mensagem();
+            mensagem.setMensagem(answer.getString("answer"));
+            mensagens.add(mensagem);
 
 
         } catch (JSONException e) {
@@ -72,7 +72,7 @@ public class ChatDataNetwork {
             throw new IOException(e);
         }
 
-        return mensagemBots.toArray(new MensagemBot[0]);
+        return mensagens.toArray(new Mensagem[0]);
     }
 
     public static boolean isConnected(Context context) {

@@ -23,6 +23,7 @@ public class CadastroActivity extends AppCompatActivity {
         email = findViewById(R.id.email_editText);
         telefone = findViewById(R.id.telefone_editText);
 
+
         Usuario usuario = new Usuario();
 
         usuario.setNome(nome.getText().toString());
@@ -30,13 +31,15 @@ public class CadastroActivity extends AppCompatActivity {
         usuario.setTelefone(telefone.getText().toString());
         usuario.setDate(new Date());
 
-        FirebaseDb database = new FirebaseDb();
-        database.inserir(usuario);
+        if (nome.getText().toString() == "") {
 
-        Intent intent = new Intent(this, ChatActivity.class);
-        startActivity(intent);
+        } else {
+
+            FirebaseDb database = new FirebaseDb();
+            database.inserir(usuario);
+
+            Intent intent = new Intent(this, ChatActivity.class);
+            startActivity(intent);
+        }
     }
-
-
-
 }
