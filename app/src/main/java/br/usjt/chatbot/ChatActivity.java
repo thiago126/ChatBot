@@ -29,7 +29,6 @@ public class ChatActivity extends AppCompatActivity {
     private ArrayAdapter adapter;
     private ArrayList<String> mensagens;
     private Mensagem mensagem;
-    private LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +37,8 @@ public class ChatActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn_enviar);
         txtMsg = findViewById(R.id.txtMsg);
         listView = findViewById(R.id.listMsg);
-        layout = findViewById(R.id.layout_msg);
         mensagens = new ArrayList<>();
         mensagens.add("Olá, no que posso te ajudar?");
-        layout.setGravity(Gravity.RIGHT);
         adapter = new ArrayAdapter<>(ChatActivity.this,
                 R.layout.linha_mensagem,
                 R.id.texto_mensagem,
@@ -59,7 +56,6 @@ public class ChatActivity extends AppCompatActivity {
             mensagens.add(answer);
             adapter.notifyDataSetChanged();
             txtMsg.setText("");
-            layout.setBackgroundResource(R.drawable.msg_user);
             if (ChatDataNetwork.isConnected(this)) {
 
                 new Thread(
@@ -74,7 +70,6 @@ public class ChatActivity extends AppCompatActivity {
                                             mensagem = lista[0];
                                             mensagem.setMensagem(lista[0].getMensagem());
                                             mensagens.add(mensagem.getMensagem());
-                                            layout.setBackgroundResource(R.drawable.msg_bot);
                                             adapter.notifyDataSetChanged();
                                         }
                                     });
