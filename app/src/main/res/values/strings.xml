@@ -11,6 +11,7 @@
     <string name="fechar">Fechar</string>
     <string name="nome_editText">Digite seu nome</string>
     <string name="email_editText">Digite seu e-mail</string>
+    <string name="telefone_editText">Digite seu telefone</string>
     <string name="entrar">Entrar</string>
     <string name="agradecimento">Obrigado por usar o chat da SinPlanControl-M</string>
     <string name="telefone">Telefone</string>

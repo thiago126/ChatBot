@@ -14,13 +14,13 @@ public class UsuarioDbHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Usuarios.db";
-    public static final String SQL_CREATE_PAIS =
+    public static final String SQL_CREATE_USUARIO =
             "CREATE TABLE " + TABLE_NAME + "(" +
                     COLUMN_NAME_NOME + "TEXT," +
                     COLUMN_NAME_EMAIL + "TEXT," +
                     COLUMN_NAME_TELEFONE + "TEXT)";
 
-    public static final String SQL_DROP_PAIS =
+    public static final String SQL_DROP_USUARIO =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     public UsuarioDbHelper (Context contexto){
@@ -29,12 +29,12 @@ public class UsuarioDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL(SQL_CREATE_PAIS);
+        db.execSQL(SQL_CREATE_USUARIO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL(SQL_DROP_PAIS);
-        db.execSQL(SQL_CREATE_PAIS);
+        db.execSQL(SQL_DROP_USUARIO);
+        db.execSQL(SQL_CREATE_USUARIO);
     }
 }

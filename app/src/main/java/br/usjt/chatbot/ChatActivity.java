@@ -1,22 +1,18 @@
 package br.usjt.chatbot;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -40,9 +36,9 @@ public class ChatActivity extends AppCompatActivity {
         mensagens = new ArrayList<>();
         Mensagem mensagem = new Mensagem();
         mensagem.setMensagem("Olá, como posso te ajudar?");
-        mensagem.setLado(true);
+        mensagem.setLado(false);
         mensagens.add(mensagem);
-        adapter = new ChatAdapter(mensagens,this);
+        adapter = new ChatAdapter(mensagens, this);
         listView.setAdapter(adapter);
     }
 
@@ -55,7 +51,7 @@ public class ChatActivity extends AppCompatActivity {
             final String answer = msg;
             Mensagem message = new Mensagem();
             message.setMensagem(answer);
-            message.setLado(false);
+            message.setLado(true);
             mensagens.add(message);
             adapter.notifyDataSetChanged();
             txtMsg.setText("");
@@ -72,8 +68,21 @@ public class ChatActivity extends AppCompatActivity {
                                         public void run() {
                                             mensagem = lista[0];
                                             mensagem.setMensagem(lista[0].getMensagem());
-                                            mensagem.setLado(true);
+                                            mensagem.setLado(false);
                                             mensagens.add(mensagem);
+                                            Intent intent = getIntent();
+                                            Usuario usuario = new Usuario();
+                                            usuario.setNome(intent.getStringExtra("nome"));
+                                            usuario.setEmail(intent.getStringExtra("email"));
+                                            usuario.setTelefone(intent.getStringExtra("telefone"));
+
+                                            Relatorio relatorio = new Relatorio();
+                                            relatorio.setData(new Date());
+                                            relatorio.setResposta(lista[0].getMensagem());
+                                            relatorio.setPergunta(answer);
+                                            relatorio.setUsuario(usuario);
+                                            FirebaseDb fdb = new FirebaseDb();
+                                            fdb.inserir(relatorio);
                                             adapter.notifyDataSetChanged();
                                         }
                                     });

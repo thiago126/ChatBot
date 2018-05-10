@@ -6,11 +6,11 @@ import android.widget.TextView;
  * Created by tnf98 on 08/05/2018.
  */
 
-public class ViewHolder {
+public class ChatViewHolder {
 
     private TextView textView;
 
-    public ViewHolder(TextView textView){
+    public ChatViewHolder(TextView textView){
         this.textView = textView;
     }
 

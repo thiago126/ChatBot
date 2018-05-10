@@ -2,12 +2,10 @@ package br.usjt.chatbot;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,17 +46,17 @@ public class ChatAdapter extends BaseAdapter {
         if(view == null){
             LayoutInflater inflater = (LayoutInflater)
                     activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if(list.get(position).isLado() == true){
+            if(list.get(position).isLado() == false){
                 view = inflater.inflate(R.layout.linha_mensagem, parent, false);
             }else {
                 view = inflater.inflate(R.layout.linha_mensagem_user, parent, false);
             }
             textView = view.findViewById(R.id.texto_mensagem);
-            ViewHolder viewHolder = new ViewHolder(textView);
-            view.setTag(viewHolder);
+            ChatViewHolder chatViewHolder = new ChatViewHolder(textView);
+            view.setTag(chatViewHolder);
         }
-        ViewHolder viewHolder = (ViewHolder)view.getTag();
-        viewHolder.getTextView().setText(list.get(position).getMensagem());
+        ChatViewHolder chatViewHolder = (ChatViewHolder)view.getTag();
+        chatViewHolder.getTextView().setText(list.get(position).getMensagem());
         return view;
     }
 }

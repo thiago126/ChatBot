@@ -33,7 +33,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:hint="@string/nome_editText"/>
+            android:hint="@string/nome_editText"
+            android:inputType="text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,8 +82,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:hint="@string/nome_editText"
-            android:inputType="number"/>
+            android:hint="@string/telefone_editText"
+            android:inputType="phone"/>
     </LinearLayout>
 
     <GridLayout
