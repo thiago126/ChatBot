@@ -1,4 +1,4 @@
-package br.usjt.chatbot;
+package br.usjt.chatbot.model.dao;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import br.usjt.chatbot.model.entity.Mensagem;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -23,37 +24,34 @@ import okhttp3.Response;
  * Created by tnf98 on 28/04/2018.
  */
 
-public class ChatDataNetwork {
+public class MensagemDAORest {
 
+    public Mensagem obterResposta(String pergunta) throws IOException, JSONException {
+        String url = "https://westus.api.cognitive.microsoft.com/qnamaker/v2.0/knowledgebases/f1736255-e25a-43fc-9582-01163e2134ed/generateAnswer";
 
-    public static Mensagem[] buscaMensagem(String url, String pergunta) throws IOException, JSONException {
         OkHttpClient client = new OkHttpClient();
         ArrayList<Mensagem> mensagens = new ArrayList<>();
         MediaType mediaType = MediaType.parse("application/json; charset=UTF-8");
 
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("question", pergunta);
-        jsonParam.put("top", 3);
 
         Request.Builder builder = new Request.Builder();
         builder.url(url);
 
-        Charset charset = Charset.forName(StandardCharsets.UTF_8.name());
-
-        //RequestBody body = RequestBody.create(mediaType, jsonParam.toString());
-        RequestBody body = new FormBody.Builder(charset).add("question",jsonParam.toString()).build();
+        RequestBody body = RequestBody.create(mediaType, jsonParam.toString());
 
         builder.post(body);
 
         Request request = builder
                 .header("Content-Type", "application/json; charset=UTF-8")
-                .header
-                ("Ocp-Apim-Subscription-Key", "93599230040f4f6c823616d44ad5ef67")
+                .header("Ocp-Apim-Subscription-Key", "93599230040f4f6c823616d44ad5ef67")
                 .build();
 
         Response response = client.newCall(request).execute();
-
         String resultado = response.body().string();
+
+        Mensagem mensagem;
         try {
             JSONObject object = new JSONObject(resultado);
 
@@ -62,8 +60,9 @@ public class ChatDataNetwork {
             int i = 0;
             JSONObject answer = answers.getJSONObject(i);
 
-            Mensagem mensagem = new Mensagem();
+            mensagem = new Mensagem();
             mensagem.setMensagem(answer.getString("answer"));
+            mensagem.setLado(false);
             mensagens.add(mensagem);
 
 
@@ -72,13 +71,6 @@ public class ChatDataNetwork {
             throw new IOException(e);
         }
 
-        return mensagens.toArray(new Mensagem[0]);
-    }
-
-    public static boolean isConnected(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return connectivityManager.getActiveNetworkInfo() != null &&
-                connectivityManager.getActiveNetworkInfo().isConnected();
+        return mensagem;
     }
 }

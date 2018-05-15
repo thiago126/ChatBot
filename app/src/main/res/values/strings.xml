@@ -15,7 +15,8 @@
     <string name="entrar">Entrar</string>
     <string name="agradecimento">Obrigado por usar o chat da SinPlanControl-M</string>
     <string name="telefone">Telefone</string>
+    <string name="chat">Olá, como posso ajuda-lo?</string>
+    <string name="pergunta_satisfacao">Esta resposta foi util?</string>
+    <string name="fimInteracao">Desculpe, entre em contato com algum atendente</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

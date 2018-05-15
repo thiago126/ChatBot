@@ -1,4 +1,4 @@
-package br.usjt.chatbot;
+package br.usjt.chatbot.view;
 
 import android.widget.TextView;
 

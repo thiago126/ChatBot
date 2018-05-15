@@ -1,29 +1,27 @@
-package br.usjt.chatbot;
+package br.usjt.chatbot.model.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static br.usjt.chatbot.UsuarioContract.UsuarioEntry.*;
-
 /**
  * Created by tnf98 on 28/04/2018.
  */
 
-public class UsuarioDbHelper extends SQLiteOpenHelper {
+public class UsuarioDAODbHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "Usuarios.db";
+    public static final String DATABASE_NAME = "usuario.db";
     public static final String SQL_CREATE_USUARIO =
-            "CREATE TABLE " + TABLE_NAME + "(" +
-                    COLUMN_NAME_NOME + "TEXT," +
-                    COLUMN_NAME_EMAIL + "TEXT," +
-                    COLUMN_NAME_TELEFONE + "TEXT)";
+            "CREATE TABLE " + UsuarioDAOContract.UsuarioEntry.TABLE_NAME + "(" +
+                    UsuarioDAOContract.UsuarioEntry.COLUMN_NAME_NOME + " VARCHAR(200)," +
+                    UsuarioDAOContract.UsuarioEntry.COLUMN_NAME_EMAIL + " VARCHAR(200)," +
+                    UsuarioDAOContract.UsuarioEntry.COLUMN_NAME_TELEFONE + " VARCHAR(200))";
 
     public static final String SQL_DROP_USUARIO =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+            "DROP TABLE IF EXISTS " + UsuarioDAOContract.UsuarioEntry.TABLE_NAME;
 
-    public UsuarioDbHelper (Context contexto){
+    public UsuarioDAODbHelper(Context contexto){
         super(contexto, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

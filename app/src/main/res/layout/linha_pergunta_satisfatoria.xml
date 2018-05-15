@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_msg"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/texto_satisfacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@drawable/msg_bot"
+        android:text="@string/pergunta_satisfacao"
+        android:padding="5dp">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/btn_sim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sim"
+        android:layout_toEndOf="@id/texto_satisfacao"
+        android:onClick="encerrar"/>
+    <Button
+        android:id="@+id/btn_nao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nao"
+        android:layout_toEndOf="@id/btn_sim"
+        android:onClick="nao"/>
+
+</RelativeLayout>

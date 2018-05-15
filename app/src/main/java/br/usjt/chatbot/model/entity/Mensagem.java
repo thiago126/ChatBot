@@ -1,4 +1,4 @@
-package br.usjt.chatbot;
+package br.usjt.chatbot.model.entity;
 
 /**
  * Created by tnf98 on 07/05/2018.
@@ -8,7 +8,8 @@ public class Mensagem {
 
     private String mensagem;
     private String nome;
-    private boolean lado;
+    private int interacao;
+    private boolean lado, satisfacao;
 
     public Mensagem(){
 
@@ -40,6 +41,22 @@ public class Mensagem {
 
     public boolean isLado() {
         return lado;
+    }
+
+    public void setSatisfacao(boolean satisfacao) {
+        this.satisfacao = satisfacao;
+    }
+
+    public boolean isSatisfacao(){
+        return satisfacao;
+    }
+
+    public int getInteracao() {
+        return interacao;
+    }
+
+    public void setInteracao(int interacao) {
+        this.interacao = interacao;
     }
 }
 

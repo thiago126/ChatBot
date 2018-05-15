@@ -1,18 +1,23 @@
-package br.usjt.chatbot;
+package br.usjt.chatbot.view;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.Date;
+import br.usjt.chatbot.Contexto;
+import br.usjt.chatbot.R;
+import br.usjt.chatbot.model.dao.UsuarioDAOFirebase;
+import br.usjt.chatbot.model.entity.Usuario;
+import br.usjt.chatbot.model.service.UsuarioService;
+import br.usjt.chatbot.pertencer.CadastroPertencer;
 
 public class CadastroActivity extends AppCompatActivity {
 
     public EditText nome, email, telefone;
+    private UsuarioService service;
+    private CadastroPertencer pertencer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +26,9 @@ public class CadastroActivity extends AppCompatActivity {
         nome = findViewById(R.id.nome_editText);
         email = findViewById(R.id.email_editText);
         telefone = findViewById(R.id.telefone_editText);
-
-        telefone.addTextChangedListener(MaskEditUtil.mask(telefone, "(##)####-#####"));
+        pertencer = new CadastroPertencer();
+        Contexto.setValue(this);
+        telefone.addTextChangedListener(MaskEditUtil.mask(telefone, MaskEditUtil.FORMAT_FONE));
     }
 
     public void entrar(View view) {
@@ -34,20 +40,8 @@ public class CadastroActivity extends AppCompatActivity {
         if (name.equals("") || mail.equals("") || tel.equals("")) {
 
         } else {
-
-            Usuario usuario = new Usuario();
-
-            usuario.setNome(nome.getText().toString());
-            usuario.setEmail(email.getText().toString());
-            usuario.setTelefone(telefone.getText().toString());
-
-
-            FirebaseDb database = new FirebaseDb();
-            database.inserir(usuario);
+            pertencer.entrar(nome, email,telefone);
             Intent intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("nome", usuario.getNome());
-            intent.putExtra("email",usuario.getEmail());
-            intent.putExtra("telefone", usuario.getTelefone());
             startActivity(intent);
         }
     }

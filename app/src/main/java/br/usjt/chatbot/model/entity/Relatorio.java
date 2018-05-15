@@ -1,6 +1,4 @@
-package br.usjt.chatbot;
-
-import android.widget.SectionIndexer;
+package br.usjt.chatbot.model.entity;
 
 import java.util.Date;
 
@@ -12,17 +10,19 @@ public class Relatorio {
 
     private String pergunta;
     private String resposta;
+    private int interacao;
     private Date data;
     private Usuario usuario;
 
     public Relatorio() {
     }
 
-    public Relatorio(String pergunta, String resposta, Date data, Usuario usuario) {
+    public Relatorio(String pergunta, String resposta, Date data, Usuario usuario, int interacao) {
         this.pergunta = pergunta;
         this.resposta = resposta;
         this.data = data;
         this.usuario = usuario;
+        this.interacao = interacao;
     }
 
     public String getPergunta() {
@@ -55,5 +55,13 @@ public class Relatorio {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getInteracao() {
+        return interacao;
+    }
+
+    public void setInteracao(int interacao) {
+        this.interacao = interacao;
     }
 }

@@ -1,4 +1,4 @@
-package br.usjt.chatbot;
+package br.usjt.chatbot.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
