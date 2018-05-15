@@ -56,9 +56,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void obterResposta(View view) {
-        final Mensagem iMensagem = pertencer.obterMensagem();
-        final String pergunta = iMensagem.getMensagem();
-        final int i = iMensagem.getInteracao();
+        final String pergunta = txtMsg.getText().toString();
         if (pergunta.equals("")) {
 
         } else {
@@ -89,7 +87,7 @@ public class ChatActivity extends AppCompatActivity {
                                             sMensagem.setSatisfacao(true);
                                             mensagens.add(sMensagem);
                                             pertencer.gerarRelatorio(pergunta, cMensagem.getMensagem(),
-                                                    iMensagem.getInteracao());
+                                                    1);
                                             adapter.notifyDataSetChanged();
                                         }
                                     });
@@ -119,7 +117,6 @@ public class ChatActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         if (i < 4) {
-                                            int i = cMensagem.getInteracao();
                                             mensagens.add(cMensagem);
                                             adapter.notifyDataSetChanged();
 
@@ -128,8 +125,7 @@ public class ChatActivity extends AppCompatActivity {
                                             sMensagem.setSatisfacao(true);
                                             mensagens.add(sMensagem);
                                             pertencer.gerarRelatorio(pergunta,
-                                                    cMensagem.getMensagem(),
-                                                    cMensagem.getInteracao());
+                                                    cMensagem.getMensagem(),i);
                                             adapter.notifyDataSetChanged();
                                         } else {
                                             Mensagem fMensagem = new Mensagem();
