@@ -3,6 +3,7 @@ package br.usjt.chatbot.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,6 @@ public class ChatActivity extends AppCompatActivity {
     private ArrayList<Mensagem> mensagens;
     private Mensagem mensagem;
     private ChatAdapter adapter;
-    private Button btnSim, btnNao;
     private ChatPertencer pertencer;
 
     @Override
@@ -41,8 +41,6 @@ public class ChatActivity extends AppCompatActivity {
         btn = findViewById(btn_enviar);
         txtMsg = findViewById(R.id.txtMsg);
         listView = findViewById(listMsg);
-        btnSim = findViewById(btn_sim);
-        btnNao = findViewById(btn_nao);
         mensagens = new ArrayList<>();
         pertencer = new ChatPertencer();
         Contexto.setValue(this);
@@ -53,6 +51,7 @@ public class ChatActivity extends AppCompatActivity {
         mensagens.add(mensagem);
         adapter = new ChatAdapter(mensagens, this);
         listView.setAdapter(adapter);
+        pertencer.excluirMensagem();
     }
 
     public void obterResposta(View view) {
@@ -68,6 +67,7 @@ public class ChatActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             txtMsg.setText("");
             txtMsg.setEnabled(false);
+            btn.setEnabled(false);
             if (NetworkStatus.isConnected()) {
                 new Thread(
                         new Runnable() {
@@ -86,8 +86,6 @@ public class ChatActivity extends AppCompatActivity {
                                             sMensagem.setLado(false);
                                             sMensagem.setSatisfacao(true);
                                             mensagens.add(sMensagem);
-                                            pertencer.gerarRelatorio(pergunta, cMensagem.getMensagem(),
-                                                    1);
                                             adapter.notifyDataSetChanged();
                                         }
                                     });
@@ -102,8 +100,12 @@ public class ChatActivity extends AppCompatActivity {
 
     public void nao(View view) {
         final Mensagem iMensagem = pertencer.obterMensagem();
-        final String pergunta = iMensagem.getMensagem();
         final int i = iMensagem.getInteracao();
+        final Button btnSim = findViewById(btn_sim);
+        final Button btnNao = findViewById(btn_nao);
+        btnSim.setEnabled(false);
+        btnNao.setEnabled(false);
+        Log.d("BANCOOOOOOOOOOOOOOOOOOO", "" + i);
         if (NetworkStatus.isConnected()) {
             new Thread(
                     new Runnable() {
@@ -111,22 +113,11 @@ public class ChatActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 runOnUiThread(new Runnable() {
-                                    final Mensagem cMensagem = pertencer.obterRespostaInteracao
-                                            (pergunta);
-
                                     @Override
                                     public void run() {
-                                        if (i < 4) {
-                                            mensagens.add(cMensagem);
-                                            adapter.notifyDataSetChanged();
-
-                                            Mensagem sMensagem = new Mensagem();
-                                            sMensagem.setLado(false);
-                                            sMensagem.setSatisfacao(true);
-                                            mensagens.add(sMensagem);
-                                            pertencer.gerarRelatorio(pergunta,
-                                                    cMensagem.getMensagem(),i);
-                                            adapter.notifyDataSetChanged();
+                                        if (i < 3) {
+                                            txtMsg.setEnabled(true);
+                                            btn.setEnabled(true);
                                         } else {
                                             Mensagem fMensagem = new Mensagem();
                                             fMensagem.setMensagem(getString(fimInteracao));
@@ -136,6 +127,7 @@ public class ChatActivity extends AppCompatActivity {
                                             adapter.notifyDataSetChanged();
                                             pertencer.excluirMensagem();
                                             txtMsg.setEnabled(true);
+                                            btn.setEnabled(true);
                                         }
                                     }
                                 });
@@ -155,9 +147,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        //adapter.remover();
-        //mensagens.remove(mensagens.size()-1);
-        //adapter.notifyDataSetChanged();
         txtMsg.setEnabled(true);
+        btn.setEnabled(true);
     }
 }

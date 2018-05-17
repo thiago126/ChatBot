@@ -44,7 +44,7 @@ public class MensagemDAODb {
 
         while (c.moveToNext()){
             mensagem.setMensagem(c.getString(c.getColumnIndex(MensagemDAOContract.MensagemEntry.COLUMN_NAME_PERGUNTA)));
-            mensagem.setInteracao(c.getInt(c.getColumnIndex(MensagemDAOContract.MensagemEntry.COLUMN_NAME_INTERACAO))+1);
+            mensagem.setInteracao(c.getInt(c.getColumnIndex(MensagemDAOContract.MensagemEntry.COLUMN_NAME_INTERACAO)));
         }
         Log.d("Banco","" + mensagem.getInteracao());
         this.insereMensagem(mensagem);

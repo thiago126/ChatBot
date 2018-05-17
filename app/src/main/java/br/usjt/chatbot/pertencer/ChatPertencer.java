@@ -1,5 +1,7 @@
 package br.usjt.chatbot.pertencer;
 
+import android.util.Log;
+
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -61,11 +63,21 @@ public class ChatPertencer implements Pertencer {
 
     public Mensagem obterResposta(String pergunta) throws IOException, JSONException {
         ms = new MensagemService();
+        Log.d("BANCOOOOOOOOOOOOOO 3", "" + this.obterMensagem().getInteracao());
         Mensagem mensagem = ms.obterResposta(pergunta);
-        mensagem.setInteracao(1);
+        if(this.obterMensagem().getInteracao() == 2){
+            mensagem.setInteracao(3);
+        }
+        else if(this.obterMensagem().getInteracao() == 1){
+            mensagem.setInteracao(2);
+        }
+        else if(this.obterMensagem().getInteracao() == 0){
+            mensagem.setInteracao(1);
+        }
+
         Mensagem pMensagem = new Mensagem();
         pMensagem.setMensagem(pergunta);
-        pMensagem.setInteracao(1);
+        pMensagem.setInteracao(mensagem.getInteracao());
         ms.insereMensagem(pMensagem);
         return mensagem;
 }
